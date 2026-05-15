@@ -14,7 +14,9 @@ def unpack(file_path, save_path):
             line = input_file.read(1024)
             if len(line) != 1024:
                 break
-            assert line[:4] == HEADER
+            if line[:4] != HEADER:
+                print(f"header not match:Header={HEADER.hex(' ')}, Line={line.hex(' ')}")
+                exit(0)
             meta = int.from_bytes(line[4:6], "big")
             # print(meta)
             VCDU = meta & 0b0000000000111111

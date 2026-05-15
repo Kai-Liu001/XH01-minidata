@@ -17,11 +17,14 @@ DIR_OUT.mkdir(exist_ok=True, parents=True)
 DIR_INFRARED.mkdir(exist_ok=True, parents=True)
 DIR_VISIBLE.mkdir(exist_ok=True, parents=True)
 
+# exit(0)
+
 def process_file(filename):
     print(f"processing {filename}...")
     unpack(DIR_DAT / filename.name, DIR_BIN / (filename.stem + ".bin"))
     (DIR_ZIP / filename.stem).mkdir(exist_ok=True, parents=True)
     (DIR_OUT / filename.stem).mkdir(exist_ok=True, parents=True)
+    print("Unpack Done!")
     
     parse(DIR_BIN / (filename.stem + ".bin"), DIR_ZIP / filename.stem, DIR_OUT / filename.stem)
     
